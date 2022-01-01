@@ -1,3 +1,5 @@
+<%= render 'shared/navbar' %>
+
 <div class="container mt-4 border">
   <div class="container-content">
     <h1 class="m-3 text-center">Welcome to Biggest E-Learning System</h1>
@@ -18,7 +20,9 @@
                 <h5 class="card-title"> <%= course.title %> </h5>
                 <h6 class="card-title"> <%= course.subject %></h6>
                 <p class="card-text"> <%= course.description %></p>
-                <a href="#" class="btn btn-primary">Details</a>
+                <a href="<%= course_details_path(slug: course.slug) %>" class="btn btn-primary">
+                  Details
+                </a>
               </div>
             </div>
           </div>
