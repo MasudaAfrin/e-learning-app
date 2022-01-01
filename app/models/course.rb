@@ -5,6 +5,9 @@ class Course < ApplicationRecord
   validates :title, :subject, presence: true
   validates :slug, presence: true, uniqueness: true
 
+  # scope
+  scope :published, -> { where(publish: true) }
+
   # callback
   before_validation :generate_slug
 
