@@ -1,6 +1,8 @@
 # frozen_string_literal: false
 
 Rails.application.routes.draw do
+  resources :questions
+  resources :lessons
   controller :pages do
     get '/course/:slug', to: 'pages#course_details', as: 'course_details'
   end
