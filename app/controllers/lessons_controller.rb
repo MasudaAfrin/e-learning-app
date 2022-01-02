@@ -1,32 +1,34 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: %i[ show edit update destroy ]
+  protect_from_forgery with: :null_session
+  before_action :set_lesson, only: %i[show edit update destroy]
 
   # GET /lessons or /lessons.json
   def index
-    @lessons = Lesson.all
+    @lessons = Lesson.order(created_at: :desc)
   end
 
   # GET /lessons/1 or /lessons/1.json
-  def show
-  end
+  def show; end
 
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @courses = Course.all.order(created_at: :asc)
+    3.times { @lesson.questions.build }
   end
 
   # GET /lessons/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /lessons or /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
+    @courses = Course.all.order(created_at: :asc)
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to lesson_url(@lesson), notice: "Lesson was successfully created." }
-        format.json { render :show, status: :created, location: @lesson }
+        format.html { redirect_to lessons_url, notice: 'Lesson was successfully created.' }
+        format.json { render :index, status: :created, location: @lesson }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @lesson.errors, status: :unprocessable_entity }
@@ -52,19 +54,21 @@ class LessonsController < ApplicationController
     @lesson.destroy
 
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: "Lesson was successfully destroyed." }
+      format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lesson
-      @lesson = Lesson.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def lesson_params
-      params.fetch(:lesson, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lesson
+    @lesson = Lesson.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def lesson_params
+    params.fetch(:lesson, {}).permit(:title, :description, :course_id, :publish,
+                                     questions_attributes: [:qstn, :optn_one, :optn_two, :optn_three, :optn_four, :answer])
+  end
 end

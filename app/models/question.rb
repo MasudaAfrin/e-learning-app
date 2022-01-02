@@ -1,7 +1,7 @@
 # rubocop:disable Style/Documentation
 
 class Question < ApplicationRecord
-  enum answer: { optn_one: 0, optn_two: 1, optn_three: 3, optn_four: 4 }
+  enum answer: { option_one: 0, option_two: 1, option_three: 2, option_four: 3 }
 
   # Association
   belongs_to :lesson

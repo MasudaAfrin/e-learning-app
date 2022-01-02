@@ -3,7 +3,7 @@
 class Course < ApplicationRecord
   # Association
   has_many :lessons, dependent: :destroy
-  has_many :questions, through: :lessons
+  # has_many :questions, through: :lessons
 
   # Validation
   validates :title, :subject, presence: true

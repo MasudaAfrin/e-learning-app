@@ -11,7 +11,70 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="card">
+    <div class="card-body">
+
+      <div class="mb-3">
+        <%= form.label :title, { class: "form-label"} %>
+        <%= form.text_field :title, { class: "form-control", placeholder: "Lesson title" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :description, { class: "form-label"} %>
+        <%= form.text_area :description, { class: "form-control", placeholder: "Description" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :course, { class: "form-label"} %>
+        <%= form.select :course_id, @courses.map { |c| [c.title, c.id]}, {}, class: "form-select" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :publish, { class: "form-label"} %>
+        <%= form.select :publish, [['Yes', 1], ['No', 0]], {}, class: "form-select" %>
+      </div>
+
+      <div class = "mb-3">
+        <h3>Questions</h3>
+      </div>
+
+      <%= form.fields_for :questions do |q| %>
+        <div class="mb-3">
+          <%= q.label :Question, { class: "form-label" } %>
+          <%= q.text_field :qstn, { class: "form-control", placeholder: "Question" } %>
+        </div>
+
+        <div class="mb-3">
+          <%= q.label :Option1, { class: "form-label"} %>
+          <%= q.text_field :optn_one, { class: "form-control", placeholder: "Option 1" } %>
+        </div>
+
+        <div class="mb-3">
+          <%= q.label :Option2, { class: "form-label"} %>
+          <%= q.text_field :optn_two, { class: "form-control", placeholder: "Option 2" } %>
+        </div>
+
+        <div class="mb-3">
+          <%= q.label :Option3, { class: "form-label"} %>
+          <%= q.text_field :optn_three, { class: "form-control", placeholder: "Option 3" } %>
+        </div>
+
+        <div class="mb-3">
+          <%= q.label :Option4, { class: "form-label"} %>
+          <%= q.text_field :optn_four, { class: "form-control", placeholder: "Option 4" } %>
+        </div>
+
+        <div class="mb-3">
+          <%= q.label :Answer, { class: "form-label"} %>
+          <%= q.select :answer, [['Option 1', 'option_one'],
+                                 ['Option 2', 'option_two'],
+                                 ['Option 3', 'option_three'],
+                                 ['Option 4', 'option_four']],
+                       {}, class: "form-select" %>
+        </div>
+      <%end%>
+
+      <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

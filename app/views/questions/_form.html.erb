@@ -11,6 +11,25 @@
     </div>
   <% end %>
 
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3">
+        <%= form.label :title, { class: "form-label"} %>
+        <%= form.text_field :title, { class: "form-control", placeholder: "Lesson title" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :description, { class: "form-label"} %>
+        <%= form.text_area :description, { class: "form-control", placeholder: "Description" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :course, { class: "form-label"} %>
+        <%= form.select :course_id, @courses.map { |c| [c.title, c.id]}, {}, class: "form-select" %>
+      </div>
+    </div>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
