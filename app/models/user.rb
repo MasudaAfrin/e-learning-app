@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum status: { active: 1, inactive: 0 }
+
+  # Association
+  has_many :enrolled_courses
 end
