@@ -7,4 +7,6 @@ class Lesson < ApplicationRecord
 
   # Validation
   validates :title, presence: true
+
+  scope :published, -> { where(publish: true) }
 end

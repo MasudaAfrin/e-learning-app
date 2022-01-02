@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# # frozen_string_literal: false
 
 # create courses
 courses = [
@@ -36,3 +36,9 @@ User.create!(full_name: 'John Doe',
              password: '123456',
              password_confirmation: '123456',
              phone: '01912345678')
+
+# create admin
+Admin.create!(full_name: 'John Doe',
+              email: 'abc@gmail.com',
+              password: '123456',
+              password_confirmation: '123456')
