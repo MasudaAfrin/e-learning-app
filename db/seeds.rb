@@ -1,7 +1,6 @@
 # frozen_string_literal: false
 
 # create courses
-
 courses = [
   {
     title: 'Bangla fundamental',
@@ -30,3 +29,10 @@ courses = [
   }
 ]
 Course.create!(courses)
+
+# create user
+User.create!(full_name: 'John Doe',
+             email: 'abc@gmail.com',
+             password: '123456',
+             password_confirmation: '123456',
+             phone: '01912345678')

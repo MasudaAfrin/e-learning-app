@@ -1,6 +1,7 @@
 # frozen_string_literal: false
 
 Rails.application.routes.draw do
+  devise_for :users
   resources :questions
   resources :lessons
   controller :pages do
