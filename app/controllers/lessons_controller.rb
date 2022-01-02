@@ -18,7 +18,9 @@ class LessonsController < ApplicationController
   end
 
   # GET /lessons/1/edit
-  def edit; end
+  def edit
+    @courses = Course.all.order(created_at: :asc)
+  end
 
   # POST /lessons or /lessons.json
   def create
