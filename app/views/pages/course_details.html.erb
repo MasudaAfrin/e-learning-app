@@ -19,7 +19,7 @@
                 <li class="list-group-item">
                   <h4><%= lesson.title %></h4>
                   <p>Description: <%= lesson.description %></p>
-                  <%= button_to 'Take lesson', enrolled_courses_path(course_id: @course.id),
+                  <%= link_to 'Take lesson', test_details_path(lesson.id),
                                 { class: "btn btn-primary" } %>
                 </li>
               </ul>

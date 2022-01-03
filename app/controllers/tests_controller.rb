@@ -4,16 +4,19 @@ class TestsController < ApplicationController
   end
 
   def create
-    # answers = UserAnswer.create_test_answer(params[:test_params])
-    p params[:test_params]
+    lesson = Lesson.find_by(id: test_params[:lesson_id])
+    UserAnswer.create_test_answer(test_params, lesson)
+    respond_to do |format|
+      format.html { redirect_to course_details_url(slug: lesson.course.slug), notice: 'Successfully submited' }
+    end
   end
 
   private
 
   def test_params
-    params.fetch(:test_params, {}).permit(:lesson_id,
-                                          answers: [
-                                            answer: %i[question_id answer]
-                                          ])
+    params.require(:answers).permit(:lesson_id,
+                                    answers: [
+                                      answer: %i[question_id answer]
+                                    ])
   end
 end
