@@ -3,9 +3,9 @@
   <div class = "container">
     <div class = "row py-5">
       <div class = "d-flex justify-content-between">
-        <h2>Lesson List</h2>
+        <h2>Course List</h2>
         <ul class="list-unstyled">
-          <li><%=link_to 'New Lesson',new_lesson_path %></li>
+          <li><%=link_to 'New Course',new_course_path %></li>
         </ul>
       </div>
 
@@ -15,22 +15,25 @@
         <tr class="text-center">
           <th scope="col">#</th>
           <th scope="col">Title</th>
-          <th scope="col">Course Name</th>
+          <th scope="col">Subject</th>
           <th scope="col">Published</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        <% @lessons.each_with_index do |lesson, index| %>
+        <% @courses.each_with_index do |course, index| %>
           <tr class="text-center">
             <th scope="row"><%= index+1 %></th>
-            <td><%= lesson.title %></td>
-            <td><%= lesson.course&.title %></td>
-            <td><%= lesson.publish? ? 'Yes' : 'NO' %></td>
+            <td><%= course.title %></td>
+            <td><%= course.subject %></td>
+            <td><%= course.publish? ? 'Yes' : 'NO' %></td>
             <td>
               <ul class="list-group list-group-horizontal">
                 <li class="list-group-item">
-                  <%= link_to 'edit', edit_lesson_path(lesson) %>
+                  <%= link_to 'show', course_path(course) %>
+                </li>
+                <li class="list-group-item">
+                  <%= link_to 'edit', edit_course_path(course) %>
                 </li>
               </ul>
             </td>

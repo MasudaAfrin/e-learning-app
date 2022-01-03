@@ -1,3 +1,5 @@
+<%= render 'shared/admin_navbar' %>
+
 <section>
   <div class = "container">
     <div class = "row py-5">
@@ -28,9 +30,12 @@
             <td><%= lesson.publish? ? 'Yes' : 'NO' %></td>
             <td>
               <ul class="list-group list-group-horizontal">
-                <li class="list-group-item">show</li>
-                <li class="list-group-item">edit</li>
-                <li class="list-group-item">delete</li>
+<!--                <li class="list-group-item">-->
+                  <%#= link_to 'show', lessons_path(lesson) %>
+<!--                </li>-->
+                <li class="list-group-item">
+                  <%= link_to 'edit', edit_lesson_path(lesson) %>
+                </li>
               </ul>
             </td>
           </tr>
