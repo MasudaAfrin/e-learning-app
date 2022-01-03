@@ -8,4 +8,6 @@ class User < ApplicationRecord
 
   # Association
   has_many :enrolled_courses
+  has_many :completed_lessons
+  has_many :user_answers
 end
