@@ -7,7 +7,9 @@ class CoursesController < ApplicationController
     @courses = Course.order(created_at: :desc)
   end
 
-  def show; end
+  def show
+    @lessons = course.lessons
+  end
 
   def edit; end
 
