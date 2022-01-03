@@ -1,0 +1,33 @@
+<%= render 'shared/navbar' %>
+
+<div class="container mt-4 border mb-5 pb-5">
+  <div class="container-content">
+    <h1 class="m-3 text-center">Welcome to Biggest E-Learning System</h1>
+    <div class="m-3">
+      <p class="text-center">An assistance to quick and effective learning</p>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="text-center">Our Courses</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <% @courses.each do |course| %>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"> <%= course.title %> </h5>
+                <h6 class="card-title"> <%= course.subject %></h6>
+                <p class="card-text"> <%= course.description %></p>
+                <a href="<%= course_details_path(slug: course.slug) %>" class="btn btn-primary">
+                  Details
+                </a>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

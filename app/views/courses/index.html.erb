@@ -1,0 +1,42 @@
+<section>
+  <div class = "container">
+    <div class = "row py-5">
+      <div class = "d-flex justify-content-between">
+        <h2>Course List</h2>
+        <ul class="list-unstyled">
+          <li><%=link_to 'New Course',new_course_path %></li>
+        </ul>
+      </div>
+
+      <!--List view of courses-->
+      <table class="table">
+        <thead>
+        <tr class="text-center">
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Published</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @courses.each_with_index do |course, index| %>
+          <tr class="text-center">
+            <th scope="row"><%= index+1 %></th>
+            <td><%= course.title %></td>
+            <td><%= course.subject %></td>
+            <td><%= course.publish? ? 'Yes' : 'NO' %></td>
+            <td>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">show</li>
+                <li class="list-group-item">edit</li>
+                <li class="list-group-item">delete</li>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

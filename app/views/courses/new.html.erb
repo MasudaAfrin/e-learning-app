@@ -1,0 +1,12 @@
+<section class="my-5">
+  <div class = "container">
+    <div class = "d-flex justify-content-between">
+      <h2>Create Course</h2>
+      <ul class="list-unstyled">
+        <li><%= link_to 'Back to Course List', courses_path %></li>
+      </ul>
+    </div>
+
+    <%= render 'form', course: @course %>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+<%= form_with(model: question, local: true) do |form| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+        <% question.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="mb-3">
+        <%= form.label :title, { class: "form-label"} %>
+        <%= form.text_field :title, { class: "form-control", placeholder: "Lesson title" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :description, { class: "form-label"} %>
+        <%= form.text_area :description, { class: "form-control", placeholder: "Description" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :course, { class: "form-label"} %>
+        <%= form.select :course_id, @courses.map { |c| [c.title, c.id]}, {}, class: "form-select" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

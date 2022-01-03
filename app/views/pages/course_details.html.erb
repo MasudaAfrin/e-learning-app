@@ -1,0 +1,32 @@
+<%= render 'shared/navbar' %>
+
+<section>
+  <div class="card">
+    <div class="card-body">
+      <div class="container">
+        <h2 class="text-capitalize" style="font-weight: bold"><%= @course.title %></h2>
+        <h4 class="text-capitalize">Subject: <%= @course.subject %></h4>
+        <p><%= @course.description %></p>
+        <p>created: <%= @course.created_at.to_date %></p>
+
+        <%= button_to 'Enroll', enrolled_courses_path(course_id: @course.id), remote: true %>
+
+        <div class="row my-5">
+          <h3 style="font-weight: bold">All Lessons</h3>
+          <% @course.lessons.published.each_with_index do |lesson| %>
+            <div class="card">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <h4><%= lesson.title %></h4>
+                  <p>Description: <%= lesson.description %></p>
+                  <%= link_to 'Take lesson', test_details_path(lesson.id),
+                                { class: "btn btn-primary" } %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
