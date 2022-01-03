@@ -8,6 +8,7 @@ Usage
 * Database initialization:
 Copy config/example.database.yml and create a new file named config/database.yml, 
 run rails db:create)
+* run rails db:seed to populate data
 * now run rails s
 
 Dependencies
