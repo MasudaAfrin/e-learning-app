@@ -9,8 +9,7 @@
         <p><%= @course.description %></p>
         <p>created: <%= @course.created_at.to_date %></p>
 
-        <%= button_to 'Enroll', enrolled_courses_path(course_id: @course.id),
-                      { class: "btn btn-primary" } %>
+        <%= button_to 'Enroll', enrolled_courses_path(course_id: @course.id), remote: true %>
 
         <div class="row my-5">
           <h3 style="font-weight: bold">All Lessons</h3>
@@ -20,7 +19,7 @@
                 <li class="list-group-item">
                   <h4><%= lesson.title %></h4>
                   <p>Description: <%= lesson.description %></p>
-                  <%= button_to 'Take lesson', enrolled_courses_path(course_id: @course.id),
+                  <%= link_to 'Take lesson', test_details_path(lesson.id),
                                 { class: "btn btn-primary" } %>
                 </li>
               </ul>

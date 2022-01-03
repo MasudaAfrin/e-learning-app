@@ -1,0 +1,71 @@
+<%= render 'shared/navbar' %>
+
+<section>
+  <div class="card">
+    <div class="card-body">
+      <div class="container">
+        <h2 class="text-capitalize mb-3" style="font-weight: bold"><%= @lesson.course.title %></h2>
+        <h2 class="text-capitalize"><%= @lesson.title %></h2>
+        <hr>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="my-3 py-3">
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="container">
+          <h2>MCQ</h2>
+
+          <div class="row my-5">
+            <%= form_with(url: tests_path, local: true) do |form| %>
+              <%= form.hidden_field 'answers[lesson_id]', value: @lesson.id %>
+              <% @lesson.questions.each_with_index do |q, index| %>
+                <div class="card">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <p>Q:<%= index+1 %>. <%= q.qstn %></p>
+                      <%= form.hidden_field "answers[answers][]answer[question_id]", value: q.id %>
+                      <%= form.fields_for :answers do |ans|%>
+                        <ul class="list-unstyled">
+                          <li>
+                            <%#= form.radio_button "answers[answers][]answer[answer]", "#{q.optn_one}" %>
+                            1. <%=q.optn_one%>
+                          </li>
+                          <li>
+                            <%#= form.radio_button "answers[answers][]answer[answer]", "#{q.optn_two}" %>
+                          2. <%=q.optn_two%>
+                          </li>
+                          <li>
+                            <%#= form.radio_button "answers[answers][]answer[answer]", "#{q.optn_three}" %>
+                          3. <%=q.optn_three%>
+                          </li>
+                          <li>
+                            <%#= form.radio_button "answers[answers][]answer[answer]", "#{q.optn_four}" %>
+                          4. <%=q.optn_four%>
+                          </li>
+                        </ul>
+                        <p class="my-2">
+                          Answer: <%= form.select "answers[answers][]answer[answer]",
+                                                 [['Option 1', 'option_one'],
+                                                         ['Option 2', 'option_two'],
+                                                         ['Option 3', 'option_three'],
+                                                         ['Option 4', 'option_four']],
+                                               {}, class: "form-select" %>
+                        </p>
+                      <%end%>
+                    </li>
+                  </ul>
+                </div>
+              <% end %>
+
+              <%= form.submit "Submit", class: "btn btn-primary my-3" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

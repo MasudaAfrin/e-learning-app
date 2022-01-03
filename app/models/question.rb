@@ -5,6 +5,7 @@ class Question < ApplicationRecord
 
   # Association
   belongs_to :lesson
+  has_many :user_answers
 
   # Validation
   validates :qstn, :optn_one, :optn_two, :optn_three, :optn_four, :answer, presence: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_02_134520) do
+ActiveRecord::Schema.define(version: 2022_01_02_153932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2022_01_02_134520) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "completed_lessons", force: :cascade do |t|
+    t.bigint "lesson_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "total_marks", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_completed_lessons_on_lesson_id"
+    t.index ["user_id"], name: "index_completed_lessons_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -71,6 +81,18 @@ ActiveRecord::Schema.define(version: 2022_01_02_134520) do
     t.index ["lesson_id"], name: "index_questions_on_lesson_id"
   end
 
+  create_table "user_answers", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "user_id", null: false
+    t.string "answer"
+    t.boolean "is_correct"
+    t.integer "mark", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_user_answers_on_question_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "full_name", null: false
     t.string "phone", null: false
@@ -86,8 +108,12 @@ ActiveRecord::Schema.define(version: 2022_01_02_134520) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "completed_lessons", "lessons"
+  add_foreign_key "completed_lessons", "users"
   add_foreign_key "enrolled_courses", "courses"
   add_foreign_key "enrolled_courses", "users"
   add_foreign_key "lessons", "courses"
   add_foreign_key "questions", "lessons"
+  add_foreign_key "user_answers", "questions"
+  add_foreign_key "user_answers", "users"
 end
