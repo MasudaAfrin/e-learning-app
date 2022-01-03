@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+E Learning System
 
-Things you may want to cover:
+Usage
+* bundle install
+* bootstrap, jquery, proper.js by yarn
+* Database initialization:
+Copy config/example.database.yml and create a new file named config/database.yml, 
+run rails db:create)
+* now run rails s
 
-* Ruby version
+Dependencies
+* Ruby version - 2.7.1
 
-* System dependencies
+* Rails Version - 6.0.4.4
 
-* Configuration
+* webpacker - 4
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
